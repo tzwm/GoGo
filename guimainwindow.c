@@ -4,6 +4,16 @@ GtkWidget* mainWindow;
 GtkWidget* menubar;
 GtkWidget* drawingareaGoban;
 
+int tmpCount;
+
+int coorToPoint(int x){
+    int point= x / SIZE;
+    if(x- point*SIZE > SIZE/2)
+        return point +1;
+    else
+        return point;
+}
+
 gint arearedrawGoban(GtkWidget* widget, GdkEventExpose* event, gpointer data){
     int i, j;
     GdkColor color;
@@ -13,6 +23,7 @@ gint arearedrawGoban(GtkWidget* widget, GdkEventExpose* event, gpointer data){
     canvas = widget->window;
     gc = widget->style->fg_gc[GTK_WIDGET_STATE(widget)];
     
+    //to draw background
     color.red = 65535;
     color.green = 47545;
     color.blue = 2855;
@@ -20,7 +31,7 @@ gint arearedrawGoban(GtkWidget* widget, GdkEventExpose* event, gpointer data){
     for(i = 0; i<GOBAN_WIDTH; i++)
        gdk_draw_line(canvas, gc, 0, i, GOBAN_HEIGHT, i);
 
-
+    //to draw lines
     color.red =25723;
     color.green = 26985;
     color.blue = 5140;
@@ -38,8 +49,23 @@ gint arearedrawGoban(GtkWidget* widget, GdkEventExpose* event, gpointer data){
     return TRUE;
 }
 
+gint clickGoban(GtkWidget* widget, GdkEvent* event, gpointer data){
+    tmpCount++;
+
+    int x1, y1, x2, y2;
+    
+    GdkModifierType state;
+    gdk_window_get_pointer(widget->window, &x1, &y1, &state);
+
+    char buf[50];
+    sprintf(buf, "%d %d,%d", tmpCount, coorToPoint(x1) +1, coorToPoint(y1) +1);
+    gtk_label_set_text(data, buf);
+
+    return TRUE;
+}
 
 void init_mainWindow(){
+    //init mainWindow
     mainWindow = gtk_window_new(GTK_WINDOW_TOPLEVEL);
     gtk_widget_set_usize(mainWindow, WINDOW_WIDTH, WINDOW_HEIGHT);
     gtk_window_set_title(GTK_WINDOW(mainWindow), "GoGo");
@@ -49,7 +75,7 @@ void init_mainWindow(){
                                 G_CALLBACK(gtk_main_quit),
                                 G_OBJECT(mainWindow));
 
-
+    //add menu
     GtkWidget* vbox = gtk_vbox_new(FALSE, 0);
     gtk_container_add(GTK_CONTAINER(mainWindow), vbox);
     
@@ -67,7 +93,7 @@ void init_mainWindow(){
     g_signal_connect(G_OBJECT(quit), "activate", 
                         G_CALLBACK(gtk_main_quit), NULL);
 
-
+    //add Goban
     GtkWidget* hbox = gtk_hbox_new(FALSE, 0);
     gtk_container_add(GTK_CONTAINER(vbox), hbox);
     
@@ -78,11 +104,18 @@ void init_mainWindow(){
                     G_CALLBACK(arearedrawGoban), NULL);
 
     GtkWidget* fixed = gtk_fixed_new();
-    gtk_widget_set_usize(fixed, 20, 20);
     gtk_fixed_put(GTK_FIXED(fixed), drawingareaGoban, 0, 0);
     gtk_container_add(GTK_CONTAINER(hbox), fixed);
     
-    
+    //test
+    tmpCount = 0;
+    GtkWidget* tmpLabel = gtk_label_new("0");
+    GtkWidget* tmpFixed = gtk_fixed_new();
+    gtk_fixed_put(GTK_FIXED(tmpFixed), tmpLabel, 0, 0);
+    gtk_container_add(GTK_CONTAINER(hbox), tmpFixed);
+	gtk_widget_add_events(drawingareaGoban, GDK_BUTTON_PRESS_MASK);
+    gtk_signal_connect(GTK_OBJECT(drawingareaGoban), "button_press_event",
+                        GTK_SIGNAL_FUNC(clickGoban), (gpointer)tmpLabel);
 }
 
 int main(int argc, char* argv[]){

@@ -8,7 +8,5 @@
 #define GOBAN_WIDTH     (SIZE*(NUM-1)+1)
 #define GOBAN_HEIGHT    (SIZE*(NUM-1)+1)
 
-
-
 extern GtkWidget* mainWindow;
 
