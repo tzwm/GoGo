@@ -48,6 +48,15 @@ void GobanView::drawBackground(QPainter* painter, const QRectF &rect)
         painter->drawText(8 -this->sizeMin/2, (i+1.2)*sizeGrid -this->sizeMin/2, QString::number(i+1));
         painter->drawText(-(19-i+0.1)*sizeGrid + this->sizeMin/2, -15 + this->sizeMin/2, QString(char(i+65)));
     }
+
+    //Draw star
+    int tmp[3] = {4, 10, 16};
+    painter->setBrush(Qt::black);
+    for(int i=0;i<3;i++)
+        for(int j=0;j<3;j++)
+        {
+            painter->drawEllipse(QPoint(tmp[i]*sizeGrid - sizeMin/2, tmp[j]*sizeGrid - sizeMin/2), 4, 4);
+        }
 }
 
 void GobanView::mousePressEvent(QMouseEvent* event)

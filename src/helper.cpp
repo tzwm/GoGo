@@ -7,3 +7,12 @@ const QPoint& Helper::toPoint(const QPoint& point, int size)
      
     return QPoint((int)x, (int)y);
 }
+
+
+const QPoint& Helper::toCoord(const QPoint& point, int size)
+{
+    int x = point.x() * size;
+    int y = point.y() * size;
+    
+    return QPoint(x, y);
+}

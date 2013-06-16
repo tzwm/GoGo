@@ -1,5 +1,6 @@
 .clang_complete
 .gitignore
+*.swp
 obj/
 bin/
 
