@@ -1,4 +1,5 @@
-Makefile
+.clang_complete
+.gitignore
 obj/
 bin/
 
