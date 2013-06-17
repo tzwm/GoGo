@@ -26,9 +26,11 @@ protected:
 private:
     QGraphicsScene* scene;
     Goban* goban;    
+    StoneItem* gobanCur[19][19];
     int sizeMin;
     int sizeGrid;
 
+    void redraw();
 };
 
 #endif

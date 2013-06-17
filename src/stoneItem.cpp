@@ -6,6 +6,7 @@ StoneItem::StoneItem(int _color, const QPoint& _stonePos, int _stoneNum)
     stoneSize = 30;
     stonePos = _stonePos;
     stoneNum = _stoneNum;
+    dead = false;
 }
 
 
@@ -40,10 +41,16 @@ void StoneItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
         painter->setPen(Qt::black);
     else
         painter->setPen(Qt::white);
-    painter->drawText(-10, 4, QString::number(stoneNum));
+    painter->drawText(-7, 4, QString::number(stoneNum));
 }
 
 const QPoint& StoneItem::getStonePos()
 {   
     return this->stonePos;
 }
+
+void StoneItem::setDead()
+{
+    dead = true;
+}
+

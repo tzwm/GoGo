@@ -15,12 +15,14 @@ public:
     virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
     const QPoint& getStonePos();
+    void setDead();
 
 private:
     int stoneColor;
     int stoneSize;
     QPoint stonePos;
     int stoneNum;
+    bool dead;
 };
 
 

@@ -17,12 +17,21 @@ public:
     void addStone(QPoint& pos, StoneItem* stone);
     bool canPlay(QPoint& pos);
     int getNumCurrent();
+    StoneItem* getStoneOnGoban(int x, int y);
+    StoneItem* getStone(int num);
 
 private:
     GobanView* gobanView;
     StoneItem* stoneOnGoban[19][19];
+    int stone10[19][19];
     std::vector<StoneItem*> stoneList;
     int numCurrent;
+    bool stoneTmp[19][19];
+
+    void initStoneTmp();
+    int getStonesLiberty(int x, int y);
+    void clearDead();
+    void removeStones(int x, int y);
 };
 
 #endif
