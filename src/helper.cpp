@@ -16,3 +16,5 @@ const QPoint& Helper::toCoord(const QPoint& point, int size)
     
     return QPoint(x -size*10, y -size*10);
 }
+
+int Helper::d[2][4] = {{-1, 1, 0, 0}, {0, 0, -1, 1}};

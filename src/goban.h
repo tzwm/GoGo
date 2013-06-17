@@ -27,11 +27,13 @@ private:
     std::vector<StoneItem*> stoneList;
     int numCurrent;
     bool stoneTmp[19][19];
+    QPoint *koPoint;
 
     void initStoneTmp();
     int getStonesLiberty(int x, int y);
-    void clearDead();
-    void removeStones(int x, int y);
+    void clearDead(int x, int y);
+    int removeStones(int x, int y);
+    bool canCapture(int x, int y);
 };
 
 #endif
