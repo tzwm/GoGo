@@ -3,19 +3,24 @@
 
 #include <QGraphicsItem>
 #include <QPainter>
+#include <QPoint>
 
 class StoneItem : public QGraphicsItem
 {
 public:
-    StoneItem(char _color);
+    StoneItem(int _color, const QPoint& _stonePos, int _stoneNum);
 
     virtual QRectF boundingRect() const;
     virtual QPainterPath shape() const;
     virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
+    const QPoint& getStonePos();
+
 private:
-    char stoneColor;
+    int stoneColor;
     int stoneSize;
+    QPoint stonePos;
+    int stoneNum;
 };
 
 

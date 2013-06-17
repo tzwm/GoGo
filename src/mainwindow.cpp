@@ -7,8 +7,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    goban = new GobanView();
-    goban->show();
+    goban = new Goban();
 
     this->init();
 }

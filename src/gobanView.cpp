@@ -23,6 +23,10 @@ void GobanView::init()
     this->sizeMin = sizeGrid*20; 
 }
 
+void GobanView::setGoban(Goban* _goban)
+{
+    this->goban = _goban;
+}
 
 void GobanView::drawBackground(QPainter* painter, const QRectF &rect)
 {
@@ -61,19 +65,20 @@ void GobanView::drawBackground(QPainter* painter, const QRectF &rect)
 
 void GobanView::mousePressEvent(QMouseEvent* event)
 {
-    scene->clear();
     QPoint point = Helper::toPoint(QPoint(event->x(), event->y()), this->sizeGrid);
     if(point.x()<1 || point.x()>19)
         return;
     if(point.y()<1 || point.y()>19)
         return;
 
-    scene->addText(QString::number(event->x())+" "+QString::number(event->y())+" "+
-                   QString::number(point.x())+" "+QString::number(point.y()));
+    //scene->clear();
 
+    if(!goban->canPlay(point))
+        return;
 
-    StoneItem *stone = new StoneItem('b');
+    StoneItem *stone = new StoneItem(goban->getNumCurrent() % 2, point, goban->getNumCurrent()+1);
+    goban->addStone(point, stone);
+    stone->setPos(Helper::toCoord(QPoint(stone->getStonePos().x(), stone->getStonePos().y()), sizeGrid));
     scene->addItem(stone);
-    stone->setPos(Helper::toCoord(QPoint(point.x(), point.y()), sizeGrid));
 }
 

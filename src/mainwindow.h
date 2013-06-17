@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 
-#include "gobanView.h"
+#include "goban.h"
 
 namespace Ui {
 class MainWindow;
@@ -19,7 +19,7 @@ public:
     
 private:
     Ui::MainWindow *ui;
-    GobanView* goban;
+    Goban* goban;
 
     void init();
 };
