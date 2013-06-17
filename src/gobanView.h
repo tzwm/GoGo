@@ -6,6 +6,7 @@
 #include <QMouseEvent>
 
 #include "helper.h"
+#include "stoneItem.h"
 
 class GobanView : public QGraphicsView
 {

@@ -55,7 +55,7 @@ void GobanView::drawBackground(QPainter* painter, const QRectF &rect)
     for(int i=0;i<3;i++)
         for(int j=0;j<3;j++)
         {
-            painter->drawEllipse(QPoint(tmp[i]*sizeGrid - sizeMin/2, tmp[j]*sizeGrid - sizeMin/2), 4, 4);
+            painter->drawEllipse(Helper::toCoord(QPoint(tmp[i], tmp[j]), sizeGrid), 4, 4);
         }
 }
 
@@ -63,6 +63,17 @@ void GobanView::mousePressEvent(QMouseEvent* event)
 {
     scene->clear();
     QPoint point = Helper::toPoint(QPoint(event->x(), event->y()), this->sizeGrid);
+    if(point.x()<1 || point.x()>19)
+        return;
+    if(point.y()<1 || point.y()>19)
+        return;
+
     scene->addText(QString::number(event->x())+" "+QString::number(event->y())+" "+
                    QString::number(point.x())+" "+QString::number(point.y()));
+
+
+    StoneItem *stone = new StoneItem('b');
+    scene->addItem(stone);
+    stone->setPos(Helper::toCoord(QPoint(point.x(), point.y()), sizeGrid));
 }
+
