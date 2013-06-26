@@ -58,7 +58,7 @@ void GobanView::drawBackground(QPainter* painter, const QRectF &rect)
     }
 
     //Draw star
-    int tmp[3] = {4, 10, 16};
+    int tmp[3] = {3, 9, 15};
     painter->setBrush(Qt::black);
     for(int i=0;i<3;i++)
         for(int j=0;j<3;j++)

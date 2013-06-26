@@ -90,8 +90,6 @@ void Goban::initStoneTmp()
 
 void Goban::clearDead(int x, int y)
 {
-    initStoneTmp();
-
     bool getTmp = false;
 
     for(int i=0;i<4;i++)
@@ -104,6 +102,7 @@ void Goban::clearDead(int x, int y)
         if(stone10[xx][yy] != numCurrent %2)
             continue;
         
+        initStoneTmp();
         int liberty = getStonesLiberty(xx, yy);
         if(liberty == 0)
         {
