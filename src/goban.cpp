@@ -2,10 +2,6 @@
 
 Goban::Goban()
 {
-    gobanView = new GobanView();
-    gobanView->setGoban(this);
-    gobanView->show();
-    
     for(int i=0;i<19;i++)
        for(int j=0;j<19;j++)
        {
@@ -15,6 +11,30 @@ Goban::Goban()
 
     numCurrent = 0;
     koPoint = NULL;
+}
+
+void Goban::setController(Controller_GTP *_con)
+{
+    this->controller = _con;
+}
+
+void Goban::play(QPoint& pos, StoneItem* stone)
+{
+    addStone(pos, stone);
+
+    bool ret = controller->play(Controller_GTP::b, Helper::pointToGo(pos));
+    if(!ret)
+        exit(1);
+    
+    QPoint move = QPoint(-1, -1);
+    while(move.x() < 0)
+    {
+        move = Helper::goToPoint(controller->genmove(Controller_GTP::w));
+    }
+    StoneItem *s = new StoneItem(numCurrent % 2,  move, numCurrent +1);
+    QPoint p = Helper::toCoord(move, gobanView->sizeGrid);
+    s->setPos(p);
+    addStone(move, s);
 }
 
 void Goban::addStone(QPoint& pos, StoneItem* stone)

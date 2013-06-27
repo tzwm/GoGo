@@ -7,20 +7,23 @@ QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 # Input
-HEADERS += obj/ui_mainwindow.h \
-           src/gobanView.h \
-           src/mainwindow.h \
+HEADERS += src/gobanView.h \
            src/helper.h \
            src/goban.h \
-           src/stoneItem.h 
+           src/stoneItem.h \
+           src/sidebar.h \
+           src/controllerGTP.h \
+           src/go.h 
            
-FORMS += src/mainwindow.ui
+FORMS += 
 SOURCES += src/gobanView.cpp \
            src/main.cpp \
-           src/mainwindow.cpp \
            src/helper.cpp \
            src/goban.cpp \
-           src/stoneItem.cpp
+           src/stoneItem.cpp \
+           src/sidebar.cpp \
+           src/controllerGTP.cpp \
+           src/go.cpp
 
 CONFIG += debug
 

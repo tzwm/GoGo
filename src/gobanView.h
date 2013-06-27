@@ -19,6 +19,8 @@ public:
     void init();
     void setGoban(Goban* _goban);
 
+    static int sizeGrid;
+
 protected:
     virtual void drawBackground(QPainter* painter, const QRectF &rect);
     virtual void mousePressEvent(QMouseEvent* event);
@@ -28,7 +30,6 @@ private:
     Goban* goban;    
     StoneItem* gobanCur[19][19];
     int sizeMin;
-    int sizeGrid;
 
     void redraw();
 };
