@@ -38,6 +38,7 @@ private:
     void clearDead(int x, int y);
     int removeStones(int x, int y);
     bool canCapture(int x, int y);
+    bool genPlay();
 };
 
 #endif

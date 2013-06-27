@@ -26,15 +26,7 @@ void Goban::play(QPoint& pos, StoneItem* stone)
     if(!ret)
         exit(1);
     
-    QPoint move = QPoint(-1, -1);
-    while(move.x() < 0)
-    {
-        move = Helper::goToPoint(controller->genmove(Controller_GTP::w));
-    }
-    StoneItem *s = new StoneItem(numCurrent % 2,  move, numCurrent +1);
-    QPoint p = Helper::toCoord(move, gobanView->sizeGrid);
-    s->setPos(p);
-    addStone(move, s);
+    genPlay();
 }
 
 void Goban::addStone(QPoint& pos, StoneItem* stone)
@@ -185,5 +177,13 @@ bool Goban::canCapture(int x, int y)
     }
 
     return false;
+}
+
+bool Goban::genPlay()
+{
+    QPoint move = Helper::goToPoint(controller->genmove(Controller_GTP::w));
+    StoneItem *stone = new StoneItem(numCurrent % 2,  move, numCurrent +1);
+    stone->setPos(Helper::toCoord(move, gobanView->sizeGrid));
+    addStone(move, stone);
 }
 
