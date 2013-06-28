@@ -72,6 +72,9 @@ void Sidebar::pressUndoBtn()
 
 void Sidebar::pressScoreBtn()
 {
+    if(go->getGoban() == NULL)
+        return;
+
     bool ret = go->checkScore();
 
     if(!ret)

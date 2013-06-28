@@ -191,6 +191,9 @@ bool Goban::genPlay()
 
 void Goban::undo()
 {
+    if(numCurrent == 0)
+        return;
+
     numCurrent--;
     StoneItem* stone = *(stoneList.end() -1);
     QPoint pos = stone->getStonePos();
