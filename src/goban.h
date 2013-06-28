@@ -28,13 +28,13 @@ public:
     int getNumCurrent();
     StoneItem* getStoneOnGoban(int x, int y);
     StoneItem* getStone(int num);
+    int stone10[19][19];
 
 private:
     GobanView* gobanView;
     Go *go;
     Controller_GTP* controller;
     StoneItem* stoneOnGoban[19][19];
-    int stone10[19][19];
     std::vector<StoneItem*> stoneList;
     int numCurrent;
     bool stoneTmp[19][19];

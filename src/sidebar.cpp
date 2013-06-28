@@ -72,6 +72,18 @@ void Sidebar::pressUndoBtn()
 
 void Sidebar::pressScoreBtn()
 {
+    bool ret = go->checkScore();
+
+    if(!ret)
+    {
+        go->getGobanView()->setWindowTitle("游戏还没有结束");
+        return;
+    }
+
+    if(go->getScoreBlack() >= 185)
+        go->getGobanView()->setWindowTitle("黑色胜利");
+    else
+        go->getGobanView()->setWindowTitle("白色胜利");
 
 }
 

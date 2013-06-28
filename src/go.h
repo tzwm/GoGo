@@ -1,6 +1,8 @@
 #ifndef __GO_H__
 #define __GO_H__
 
+#include <string>
+
 #include "controllerGTP.h"
 #include "goban.h"
 #include "gobanView.h"
@@ -22,6 +24,9 @@ public:
     void close();
     Goban* getGoban();
     GobanView* getGobanView();
+    bool checkScore();
+    int getScoreBlack();
+    int getScoreWhite();    
 
     int mode;
 
@@ -30,6 +35,13 @@ private:
     GobanView *gobanView;
     Controller_GTP *controller;
     Sidebar *sidebar;
+
+    int scoreBlack;
+    int scoreWhite;
+    int colorTmp;
+    bool stonesTmp[19][19];
+
+    int checkPoint(int x, int y);
 };
 
 #endif
