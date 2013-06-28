@@ -8,6 +8,8 @@
 #include "go.h"
 
 class Go;
+class GobanView;
+class Goban;
 
 class Sidebar : public QDialog 
 {

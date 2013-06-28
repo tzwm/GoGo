@@ -11,6 +11,7 @@
 
 class GobanView;
 class Go;
+class Sidebar;
 
 class Goban 
 {
@@ -22,6 +23,8 @@ public:
     void addStone(QPoint& pos, StoneItem* stone);
     bool canPlay(QPoint& pos);
     bool genPlay();
+    void undo();
+
     int getNumCurrent();
     StoneItem* getStoneOnGoban(int x, int y);
     StoneItem* getStone(int num);

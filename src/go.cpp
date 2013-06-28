@@ -43,3 +43,13 @@ void Go::close()
     if(controller)
         controller->quitEngine();     
 }
+
+Goban* Go::getGoban()
+{
+    return this->goban;
+}
+
+GobanView* Go::getGobanView()
+{
+    return this->gobanView;
+}

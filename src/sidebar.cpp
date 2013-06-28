@@ -64,7 +64,10 @@ void Sidebar::pressPCBtn()
 
 void Sidebar::pressUndoBtn()
 {
-
+    if(go->getGoban() == NULL)
+        return;
+    go->getGoban()->undo();
+    go->getGobanView()->redraw();
 }
 
 void Sidebar::pressScoreBtn()

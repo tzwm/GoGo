@@ -189,3 +189,15 @@ bool Goban::genPlay()
     addStone(move, stone);
 }
 
+void Goban::undo()
+{
+    numCurrent--;
+    StoneItem* stone = *(stoneList.end() -1);
+    QPoint pos = stone->getStonePos();
+    stoneList.pop_back();
+    stoneOnGoban[pos.x()][pos.y()] = NULL;
+    stone10[pos.x()][pos.y()] = -1;
+
+    if(go->mode == 1)
+        controller->undo();
+}

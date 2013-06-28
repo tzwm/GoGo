@@ -13,6 +13,7 @@
 
 class Goban;
 class Go;
+class Sidebar;
 
 class GobanView : public QGraphicsView
 {
@@ -22,6 +23,7 @@ public:
     void init();
     void setGoban(Goban* _goban);
     void setGo(Go *_go);
+    void redraw();
 
     static int sizeGrid;
 
@@ -36,7 +38,6 @@ private:
     StoneItem* gobanCur[19][19];
     int sizeMin;
 
-    void redraw();
 };
 
 #endif

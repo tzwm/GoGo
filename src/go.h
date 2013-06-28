@@ -20,6 +20,8 @@ public:
     void showSidebar();
     void newGame(int _mode);
     void close();
+    Goban* getGoban();
+    GobanView* getGobanView();
 
     int mode;
 
