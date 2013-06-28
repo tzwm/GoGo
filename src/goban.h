@@ -19,6 +19,7 @@ public:
     void play(QPoint& pos, StoneItem* stone);
     void addStone(QPoint& pos, StoneItem* stone);
     bool canPlay(QPoint& pos);
+    bool genPlay();
     int getNumCurrent();
     StoneItem* getStoneOnGoban(int x, int y);
     StoneItem* getStone(int num);
@@ -38,7 +39,6 @@ private:
     void clearDead(int x, int y);
     int removeStones(int x, int y);
     bool canCapture(int x, int y);
-    bool genPlay();
 };
 
 #endif

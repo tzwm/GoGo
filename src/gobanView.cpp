@@ -5,6 +5,7 @@ int GobanView::sizeGrid = 32;
 GobanView::GobanView(QWidget* parent) : QGraphicsView(parent)
 {
     this->setFixedSize(sizeGrid*20+4, sizeGrid*20+4);
+    move(QPoint(300, 50));
 
     scene = new QGraphicsScene();
     scene->setSceneRect(-sizeGrid*20/2, -sizeGrid*20/2, sizeGrid*20, sizeGrid*20);
@@ -82,8 +83,10 @@ void GobanView::mousePressEvent(QMouseEvent* event)
     StoneItem *stone = new StoneItem(goban->getNumCurrent() % 2, point, goban->getNumCurrent()+1);
     stone->setPos(Helper::toCoord(stone->getStonePos(), sizeGrid));
     goban->play(point, stone);
-
     this->redraw();
+
+    //goban->genPlay();
+    //this->redraw();
 }
 
 void GobanView::redraw()

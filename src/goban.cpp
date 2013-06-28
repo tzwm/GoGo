@@ -25,8 +25,6 @@ void Goban::play(QPoint& pos, StoneItem* stone)
     bool ret = controller->play(Controller_GTP::b, Helper::pointToGo(pos));
     if(!ret)
         exit(1);
-    
-    genPlay();
 }
 
 void Goban::addStone(QPoint& pos, StoneItem* stone)

@@ -7,7 +7,7 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
 
     Go *go = new Go();
-    go->showGobanView();
+    go->showSidebar();
 
     return a.exec();
 }

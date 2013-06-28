@@ -5,6 +5,9 @@
 #include "goban.h"
 #include "gobanView.h"
 #include "helper.h"
+#include "sidebar.h"
+
+class Sidebar;
 
 class Go
 {
@@ -13,13 +16,16 @@ public:
     ~Go();
     void showGobanView();
     void showSidebar();
+    void newGame(int _mode);
+    void close();
+
+    int mode;
 
 private:
     Goban *goban;
     GobanView *gobanView;
     Controller_GTP *controller;
-
-
+    Sidebar *sidebar;
 };
 
 #endif

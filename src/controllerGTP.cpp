@@ -121,7 +121,7 @@ bool Controller_GTP::quitEngine()
 
 bool Controller_GTP::waitForActivity()
 {
-    sleep(0.8);
+    sleep(1);
 
     fd_set read_fds;
 

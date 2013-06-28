@@ -2,6 +2,16 @@
 
 Go::Go()
 {
+    goban = NULL;
+    gobanView = NULL;
+    controller = NULL;
+
+    sidebar = new Sidebar(); 
+    sidebar->setGo(this);
+}
+
+void Go::newGame(int _mode)
+{    
     goban = new Goban();
     gobanView = new GobanView();
     controller = new Controller_GTP();
@@ -9,6 +19,9 @@ Go::Go()
     gobanView->setGoban(goban);
     goban->setController(controller);
 
+    showGobanView();
+
+    mode = _mode;
 }
 
 void Go::showGobanView()
@@ -18,5 +31,13 @@ void Go::showGobanView()
 
 void Go::showSidebar()
 {
+    sidebar->show();
+}
 
+void Go::close()
+{
+    if(gobanView)
+        gobanView->close();
+    if(controller)
+        controller->quitEngine();     
 }
