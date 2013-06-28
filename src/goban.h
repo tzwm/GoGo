@@ -10,12 +10,14 @@
 #include "controllerGTP.h"
 
 class GobanView;
+class Go;
 
 class Goban 
 {
 public:
     Goban();
     void setController(Controller_GTP *_con);
+    void setGo(Go *_go);
     void play(QPoint& pos, StoneItem* stone);
     void addStone(QPoint& pos, StoneItem* stone);
     bool canPlay(QPoint& pos);
@@ -26,6 +28,7 @@ public:
 
 private:
     GobanView* gobanView;
+    Go *go;
     Controller_GTP* controller;
     StoneItem* stoneOnGoban[19][19];
     int stone10[19][19];

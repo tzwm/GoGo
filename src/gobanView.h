@@ -8,8 +8,11 @@
 #include "helper.h"
 #include "stoneItem.h"
 #include "goban.h"
+#include "go.h"
+
 
 class Goban;
+class Go;
 
 class GobanView : public QGraphicsView
 {
@@ -18,6 +21,7 @@ public:
     ~GobanView();
     void init();
     void setGoban(Goban* _goban);
+    void setGo(Go *_go);
 
     static int sizeGrid;
 
@@ -28,6 +32,7 @@ protected:
 private:
     QGraphicsScene* scene;
     Goban* goban;    
+    Go* go;
     StoneItem* gobanCur[19][19];
     int sizeMin;
 

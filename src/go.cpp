@@ -17,7 +17,9 @@ void Go::newGame(int _mode)
     controller = new Controller_GTP();
 
     gobanView->setGoban(goban);
+    gobanView->setGo(this);
     goban->setController(controller);
+    goban->setGo(this);
 
     showGobanView();
 

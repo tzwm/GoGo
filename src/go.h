@@ -8,6 +8,8 @@
 #include "sidebar.h"
 
 class Sidebar;
+class GobanView;
+class Goban;
 
 class Go
 {

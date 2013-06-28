@@ -18,13 +18,17 @@ void Goban::setController(Controller_GTP *_con)
     this->controller = _con;
 }
 
+void Goban::setGo(Go *_go)
+{
+    this->go = _go;
+}
+
 void Goban::play(QPoint& pos, StoneItem* stone)
 {
     addStone(pos, stone);
 
-    bool ret = controller->play(Controller_GTP::b, Helper::pointToGo(pos));
-    if(!ret)
-        exit(1);
+    if(go->mode == 1)
+        bool ret = controller->play(Controller_GTP::b, Helper::pointToGo(pos));
 }
 
 void Goban::addStone(QPoint& pos, StoneItem* stone)

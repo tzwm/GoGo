@@ -34,6 +34,11 @@ void GobanView::setGoban(Goban* _goban)
     this->goban = _goban;
 }
 
+void GobanView::setGo(Go *_go)
+{
+    this->go = _go;
+}
+
 void GobanView::drawBackground(QPainter* painter, const QRectF &rect)
 {
     //Draw background
@@ -85,8 +90,11 @@ void GobanView::mousePressEvent(QMouseEvent* event)
     goban->play(point, stone);
     this->redraw();
 
-    //goban->genPlay();
-    //this->redraw();
+    if(go->mode == 1)
+    {
+        goban->genPlay();
+        this->redraw();
+    }
 }
 
 void GobanView::redraw()
